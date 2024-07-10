@@ -1,0 +1,34 @@
+{
+  "colors": {
+    "default": "#2B2D31",
+    "primary": "#3b82f6",
+    "secondary": "#4f545c",
+    "success": "#22c55e",
+    "danger": "#ED4245",
+    "info": "#FEE75C",
+    "warning": "#fbbd23",
+    "magic": "#c026d3",
+    "green": "#57F287",
+    "fuchsia": "#EB459E",
+    "azoxo": "#5865F2",
+    "developer": "#3e70dd",
+    "balance": "#45ddc0",
+    "brilliance": "#f07d5f",
+    "nitro": "#ff6bfa",
+    "bravery": "#9c84ef"
+  },
+  "emojis": {
+    "static": {
+      "gear": "1243664765377712278",
+      "home": "1244096659257036840",
+      "previous": "1244097067463475250",
+      "pencil": "1244199478550990971",
+      "sucess": "1244260963058716762",
+      "info": "1244260964321202206",
+      "danger": "1244260965256659046",
+      "warning": "1244260966653235202",
+      "account": "1259590189739671684"
+    },
+    "animated": {}
+  }
+}
