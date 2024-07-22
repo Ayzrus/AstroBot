@@ -12,7 +12,8 @@ export const guildSchema = new Schema(
             tickets: t.parentInfo
         },
         tickets: {
-            roles: [String]
+            roles: [String],
+            closed: [String, Boolean]
         }
     },
     {
