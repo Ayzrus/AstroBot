@@ -158,6 +158,29 @@ new Responder({
         });
 
       }
+      case "call": {
+        await interaction.update(menus.tickets.control.main(member, urlStore, true));
+
+        const roles = getIncludeRoles(guildData.tickets?.roles, guild);
+
+        const roleMentions = roles.map(role => `<@&${role.id}>`).join(" ");
+
+        const spinnerMessage = await channel.send(res.danger(`${icon(":a:spinner")} Estamos a entrar em contacto com a equipa! Aguarde...`, { components: [] }));
+
+        await sleep(1000);
+
+        await spinnerMessage.delete();
+
+        await channel.send({
+          content: `Chamando a equipa da staff: ${roleMentions}`,
+        });
+
+        setTimeout(async () => {
+          await interaction.editReply(menus.tickets.control.main(member, urlStore, false));
+        }, 300000);
+
+        return;
+      }
     }
 
   },

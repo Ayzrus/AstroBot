@@ -1,6 +1,5 @@
 import { Responder, ResponderType } from "#base";
 import { db } from "#database";
-import { res } from "#functions";
 import { menus } from "#menus";
 
 new Responder({

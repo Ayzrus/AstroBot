@@ -6,7 +6,7 @@ new Responder({
   customId: "settings/:menu/:action",
   type: ResponderType.Button, cache: "cached",
   async run(interaction, { menu, action }) {
-    const { client, guild } = interaction;
+    const { guild } = interaction;
 
     const guildData = await db.guilds.get(guild.id);
 

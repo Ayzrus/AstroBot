@@ -1,7 +1,7 @@
 import { Command } from "#base";
 import { icon, res } from "#functions";
 import { menus } from "#menus";
-import { ApplicationCommandOptionType, ApplicationCommandType, ChannelType, codeBlock, Guild } from "discord.js";
+import { ApplicationCommandOptionType, ApplicationCommandType, ChannelType, codeBlock } from "discord.js";
 
 new Command({
   name: "setup",

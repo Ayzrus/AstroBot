@@ -8,7 +8,7 @@ new Responder({
   customId: "settings/:menu/:arg",
   type: ResponderType.Select, cache: "cached",
   async run(interaction, { menu, arg }) {
-    const { client, guild } = interaction;
+    const {  guild } = interaction;
 
     const guildData = await db.guilds.get(guild.id);
 

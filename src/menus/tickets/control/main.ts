@@ -4,7 +4,7 @@ import { settings } from "#settings";
 import { brBuilder, createEmbed, createEmbedAuthor, createRow } from "@magicyan/discord";
 import { ButtonBuilder, ButtonStyle, GuildMember } from "discord.js";
 
-export function ticketControlPanel(member: GuildMember, urlStore: URLStore) {
+export function ticketControlPanel(member: GuildMember, urlStore: URLStore, active: boolean) {
 
   const embed = createEmbed({
     url: urlStore,
@@ -25,6 +25,13 @@ export function ticketControlPanel(member: GuildMember, urlStore: URLStore) {
       label: "Painel Staff",
       emoji: icon("staff"),
       style: ButtonStyle.Primary
+    }),
+    new ButtonBuilder({
+      customId: "ticket/control/call",
+      label: "Chamar Staff",
+      emoji: icon("staff"),
+      style: ButtonStyle.Secondary,
+      disabled: active === true
     }),
     new ButtonBuilder({
       customId: "ticket/control/close",

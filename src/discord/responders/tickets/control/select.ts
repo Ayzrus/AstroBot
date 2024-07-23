@@ -3,7 +3,7 @@ import { icon, res, sendTicketLog } from "#functions";
 import { menus } from "#menus";
 import { settings } from "#settings";
 import { brBuilder, createEmbed, createLinkButton, createRow, findMember } from "@magicyan/discord";
-import { channelMention, TextChannel } from "discord.js";
+import { TextChannel } from "discord.js";
 
 new Responder({
   customId: "ticket/control/:action",
