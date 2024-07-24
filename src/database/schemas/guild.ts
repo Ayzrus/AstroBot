@@ -6,6 +6,7 @@ export const guildSchema = new Schema(
         id: t.string,
         channels: {
             logs: t.channelInfo,
+            logscommands: t.channelInfo,
             transcripts: t.channelInfo,
         },
         parents: {

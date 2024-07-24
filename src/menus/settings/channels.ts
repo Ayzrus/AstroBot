@@ -8,6 +8,7 @@ import { settingsNav } from "./nav.js";
 export const options = [
   { emoji: "📨", label: "Logs do Bot", value: "logs", description: "Canal de logs Bot" },
   { emoji: "📩", label: "Transcripts", value: "transcripts", description: "Canal de logs Bot" },
+  { emoji: "📖", label: "Logs de Comandos do Bot", value: "logscommands", description: "Canal de logs dos Comandos do Bot" },
 ] as const;
 
 export function settingsChannelsMenu(guildData: GuildSchema) {

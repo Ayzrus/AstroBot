@@ -3,8 +3,8 @@ import { db } from "#database";
 import { getIncludeRoles, icon, res, sendTicketLog } from "#functions";
 import { menus } from "#menus";
 import { settings } from "#settings";
-import { brBuilder, createEmbed, createEmbedAuthor, createLinkButton, createRow, findChannel, findMember, limitText } from "@magicyan/discord";
-import { ActionRowBuilder, ChannelType, ModalBuilder, OverwriteData, PermissionFlagsBits, TextInputBuilder, TextInputStyle, userMention } from "discord.js";
+import { brBuilder, createEmbed, createEmbedAuthor, createLinkButton, createRow, findChannel, limitText } from "@magicyan/discord";
+import { ActionRowBuilder, ChannelType, ModalBuilder, OverwriteData, PermissionFlagsBits, TextInputBuilder, TextInputStyle } from "discord.js";
 
 new Responder({
   customId: "ticket/panel/open",
