@@ -43,7 +43,7 @@ new Command({
     });
 
     user.ban({ reason: motivo }).then(() => {
-      interaction.reply({ embeds: [embed] });
+      interaction.reply({ ephemeral: true, embeds: [embed] });
       sendCommandsLog({
         color: "warning",
         executor: interaction.member,
@@ -58,7 +58,7 @@ new Command({
         color: settings.colors.danger,
         description: `Não foi possível banir o usuário ${user} (\`${user.id}\`) do servidor! ${e}`,
       });
-      interaction.reply({ embeds: [embedError] });
+      interaction.reply({ ephemeral: true, embeds: [embedError] });
     });
 
     return;

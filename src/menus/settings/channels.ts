@@ -9,6 +9,7 @@ export const options = [
   { emoji: "📨", label: "Logs do Bot", value: "logs", description: "Canal de logs Bot" },
   { emoji: "📩", label: "Transcripts", value: "transcripts", description: "Canal de logs Bot" },
   { emoji: "📖", label: "Logs de Comandos do Bot", value: "logscommands", description: "Canal de logs dos Comandos do Bot" },
+  { emoji: "🆙", label: "Canal de level Up", value: "level", description: "Canal de level Up dos membros da comunidade" },
 ] as const;
 
 export function settingsChannelsMenu(guildData: GuildSchema) {
@@ -48,7 +49,8 @@ export function settingsChannelMenu(guildData: GuildSchema, selected: string) {
   const embed = createEmbed({
     color: settings.colors.warning,
     description: brBuilder(
-      `${icon("pencil")} Alterar o Canal ${emoji} ${label}`,
+      `${icon("pencil")} Alterar o Canal`,
+      `${emoji} ${label}`,
       `Atual: ${formatedChannelMention(channels[selected]?.id ?? "`Não definido`")}`
     )
   });

@@ -5,6 +5,9 @@ export const memberSchema = new Schema(
     {
         id: t.string,
         guildId: t.string,
+        level: t.number,
+        exp: t.number,
+        requireExp: t.number,
     },
     {
         statics: {

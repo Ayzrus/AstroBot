@@ -1,0 +1,99 @@
+import { Event } from "#base";
+import { db } from "#database";
+import { findChannel } from "@magicyan/discord";
+import { AttachmentBuilder, Message } from "discord.js";
+
+new Event({
+  name: "Event Exp",
+  event: "messageCreate",
+  async run(message: Message) {
+    if (message.author.bot) return;
+    if (!message.guild) return;
+
+    const member = message.member;
+    if (!member) return;
+
+    let userData = await db.members.findOne({
+      id: member.id,
+      guildId: message.guild.id,
+    });
+
+    const guildData = await db.guilds.get(message.guild.id);
+
+    if (!userData) {
+      try {
+        userData = await db.members.create({
+          id: member.id,
+          guildId: message.guild.id,
+          level: 0,
+          exp: 0,
+          requireExp: 100,
+        });
+
+        console.log(`Registro criado para o membro ${member.user.tag} na guilda ${member.guild.name}`);
+      } catch (error) {
+        console.error(`Erro ao criar registro para o membro ${member.user.tag}:`, error);
+        return;
+      }
+    }
+
+    const expGained = Math.floor(Math.random() * 10) + 1;
+    const newExp = userData.exp + expGained;
+
+    let levelUp = false;
+    let newLevel = userData.level;
+    let newRequireExp = userData.requireExp;
+
+    if (newExp >= userData.requireExp) {
+      levelUp = true;
+      newLevel += 1;
+      newRequireExp = Math.floor(newRequireExp * 1.2);
+    }
+
+    await db.members.updateOne(
+      { id: member.id, guildId: message.guild.id },
+      {
+        $set: {
+          exp: newExp,
+          level: newLevel,
+          requireExp: newRequireExp,
+        },
+      }
+    );
+
+    if (levelUp) {
+      await db.members.updateOne(
+        { id: member.id, guildId: message.guild.id },
+        {
+          $set: {
+            exp: 0,
+          },
+        }
+      );
+
+      const levelChannelId = guildData.channels?.level?.id ?? "";
+
+      const levelChannel = findChannel(message.guild).byId(levelChannelId);
+
+      if (!levelChannel) return;
+
+      const allMembers = await db.members.find({ guildId: message.guild.id }).sort({ level: -1, exp: -1 });
+
+      // const rank = new Rank();
+      // .setUsername(member.user.username)
+      // .setProgressBar("#FFC300", "COLOR")
+      // .setAvatar(member.user.displayAvatarURL({ size: 256 }))
+      // .setCurrentXP(newExp)
+      // .setRequiredXP(newRequireExp)
+      // .setLevel(newLevel)
+      // .setRank(allMembers.findIndex(m => m.id === member.id) + 1)
+      // .setDiscriminator(member.user.discriminator)
+      // .setStatus(member.presence?.status ?? "online");
+
+      // const pngBuffer = await rank.build();
+      // const attachment = new AttachmentBuilder(pngBuffer);
+      // levelChannel.send({ files: [attachment] });
+
+    }
+  },
+});

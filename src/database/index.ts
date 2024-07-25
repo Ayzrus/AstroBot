@@ -5,9 +5,9 @@ import { log } from "#settings";
 import chalk from "chalk";
 
 try {
-   await mongoose.connect(process.env.MONGO_URI, { dbName: "database" });
+   await mongoose.connect(process.env.MONGO_URI, { dbName: "AstroBot" });
    log.success(chalk.green("MongoDB connected"));
-} catch(err){
+} catch (err) {
    log.error(err);
    process.exit(1);
 }

@@ -8,6 +8,7 @@ export const guildSchema = new Schema(
             logs: t.channelInfo,
             logscommands: t.channelInfo,
             transcripts: t.channelInfo,
+            level: t.channelInfo
         },
         parents: {
             tickets: t.parentInfo

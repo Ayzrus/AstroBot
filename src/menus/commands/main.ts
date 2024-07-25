@@ -18,12 +18,12 @@ export function commandMainPanel(guild: Guild) {
   const row = createRow(
     new ButtonBuilder({
       customId: "commands/panel/open",
-      label: "Unban.",
+      label: "Unban",
       emoji: "⚒️",
       style: ButtonStyle.Success
     })
   );
 
-  return { embeds: [embed], components: [row] };
+  return { ephemeral, embeds: [embed], components: [row] };
 
 }

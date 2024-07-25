@@ -1,6 +1,6 @@
 import { Responder, ResponderType } from "#base";
 import { createRow } from "@magicyan/discord";
-import { StringSelectMenuBuilder } from "discord.js";
+import { ButtonBuilder, ButtonStyle, StringSelectMenuBuilder } from "discord.js";
 
 new Responder({
   customId: "commands/panel/open",
@@ -28,7 +28,16 @@ new Responder({
       })
     );
 
-    interaction.update({ components: [row] });
+    const attRow = createRow(
+      new ButtonBuilder({
+        customId: "commands/panel/open",
+        label: "Atualizar lista",
+        emoji: "⚒️",
+        style: ButtonStyle.Success
+      })
+    );
+
+    interaction.update({ components: [row, attRow] });
 
     return;
 

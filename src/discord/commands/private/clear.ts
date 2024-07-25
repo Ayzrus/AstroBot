@@ -34,7 +34,7 @@ new Command({
       interaction.reply({
         embeds: [response],
       });
-      await sleep(5000);
+      await sleep(1000);
       sendCommandsLog({
         color: "warning",
         executor: interaction.member,
