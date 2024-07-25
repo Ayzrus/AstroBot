@@ -1,12 +1,12 @@
 import { Command } from "#base";
+import { sendCommandsLog } from "#functions";
 import { settings } from "#settings";
 import { brBuilder, createEmbed, createEmbedAuthor } from "@magicyan/discord";
 import { ApplicationCommandOptionType, ApplicationCommandType } from "discord.js";
-import { sendCommandsLog } from "functions/commands/logs.js";
 
 new Command({
   name: "ban",
-  description: "Usado para Banir alguma pessoa que tenha quebrado alguma regra.",
+  description: "[🔒] Usado para Banir alguma pessoa que tenha quebrado alguma regra.",
   type: ApplicationCommandType.ChatInput,
   options: [
     {
@@ -42,18 +42,17 @@ new Command({
       author: createEmbedAuthor(interaction.member, { prefix: "Banido por" }),
     });
 
-    sendCommandsLog({
-      color: "warning",
-      executor: interaction.member,
-      guild: interaction.guild,
-      title: "Logs de Banimento",
-      text: brBuilder(
-        `O usuário ${user} (\`${user.id}\`) foi banido com sucesso!`,
-      )
-    });
-
     user.ban({ reason: motivo }).then(() => {
       interaction.reply({ embeds: [embed] });
+      sendCommandsLog({
+        color: "warning",
+        executor: interaction.member,
+        guild: interaction.guild,
+        title: "Logs de Banimento",
+        text: brBuilder(
+          `O usuário ${user} (\`${user.id}\`) foi banido com sucesso!`,
+        )
+      });
     }).catch(e => {
       const embedError = createEmbed({
         color: settings.colors.danger,

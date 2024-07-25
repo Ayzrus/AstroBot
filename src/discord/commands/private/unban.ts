@@ -3,10 +3,13 @@ import { menus } from "#menus";
 import { ApplicationCommandType } from "discord.js";
 
 new Command({
-  name: "configurações",
-  description: "[🔒] Comando de configurações do Bot.",
+  name: "desbanir",
+  description: "[🔒] Comando para desbanir um utilizador.",
   type: ApplicationCommandType.ChatInput,
   async run(interaction) {
-    interaction.reply(menus.settings.main());
+
+    const { guild } = interaction;
+
+    interaction.reply(menus.commands.main(guild));
   }
 });

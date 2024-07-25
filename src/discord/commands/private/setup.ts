@@ -5,7 +5,7 @@ import { ApplicationCommandOptionType, ApplicationCommandType, ChannelType, code
 
 new Command({
   name: "setup",
-  description: "Comando de setup do painel de Ticket.",
+  description: "[🔒] Comando de setup do painel de Ticket.",
   type: ApplicationCommandType.ChatInput,
   options: [
     {
