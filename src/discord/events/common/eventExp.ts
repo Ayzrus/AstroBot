@@ -1,6 +1,6 @@
 import { Event } from "#base";
 import { db } from "#database";
-import { findChannel } from "@magicyan/discord";
+import { brBuilder, createEmbed, findChannel } from "@magicyan/discord";
 import { AttachmentBuilder, Message } from "discord.js";
 
 new Event({
@@ -79,20 +79,19 @@ new Event({
 
       const allMembers = await db.members.find({ guildId: message.guild.id }).sort({ level: -1, exp: -1 });
 
-      // const rank = new Rank();
-      // .setUsername(member.user.username)
-      // .setProgressBar("#FFC300", "COLOR")
-      // .setAvatar(member.user.displayAvatarURL({ size: 256 }))
-      // .setCurrentXP(newExp)
-      // .setRequiredXP(newRequireExp)
-      // .setLevel(newLevel)
-      // .setRank(allMembers.findIndex(m => m.id === member.id) + 1)
-      // .setDiscriminator(member.user.discriminator)
-      // .setStatus(member.presence?.status ?? "online");
+      const embed = createEmbed({
+        thumbnail: member.user.displayAvatarURL(),
+        description: brBuilder(
+          `||<@${member.id}>||`,
+          `Parabéns você subiu para o nível ${newLevel}!`,
+          `Exp necessario para proximo nivel: ${newRequireExp}`,
+          `Você ta no rank: ${allMembers.findIndex(m => m.id === member.id) + 1}`
+        ),
+        footer: { iconURL: message.guild.iconURL(), text: message.guild.name },
+        timestamp: Date.now()
+      });
 
-      // const pngBuffer = await rank.build();
-      // const attachment = new AttachmentBuilder(pngBuffer);
-      // levelChannel.send({ files: [attachment] });
+      levelChannel.send({ embeds: [embed] });
 
     }
   },
