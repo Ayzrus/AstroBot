@@ -84,7 +84,7 @@ new Event({
         description: brBuilder(
           `||<@${member.id}>||`,
           `Parabéns você subiu para o nível ${newLevel}!`,
-          `Exp necessario para proximo nivel: ${newRequireExp}`,
+          `Exp necessario para proximo nível: ${newRequireExp}`,
           `Você ta no rank: ${allMembers.findIndex(m => m.id === member.id) + 1}`
         ),
         footer: { iconURL: message.guild.iconURL(), text: message.guild.name },
