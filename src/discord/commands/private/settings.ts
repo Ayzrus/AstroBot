@@ -1,4 +1,5 @@
 import { Command } from "#base";
+import { db } from "#database";
 import { menus } from "#menus";
 import { ApplicationCommandType } from "discord.js";
 
@@ -7,6 +8,8 @@ new Command({
   description: "[🔒] Comando de configurações do Bot.",
   type: ApplicationCommandType.ChatInput,
   async run(interaction) {
-    interaction.reply(menus.settings.main());
+    const { guild } = interaction;
+    const guildData = await db.guilds.get(guild.id);
+    interaction.reply(menus.settings.main(guildData.antiflood));
   }
 });

@@ -8,6 +8,7 @@ export const memberSchema = new Schema(
         level: t.number,
         exp: t.number,
         requireExp: t.number,
+        warns: t.number,
     },
     {
         statics: {

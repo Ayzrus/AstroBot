@@ -7,7 +7,6 @@ new Responder({
   type: ResponderType.Button, cache: "cached",
   async run(interaction, { menu, action }) {
     const { guild } = interaction;
-
     const guildData = await db.guilds.get(guild.id);
 
     switch (menu) {
@@ -19,6 +18,22 @@ new Responder({
           }
           case "remove": {
             interaction.update(menus.settings.roles.remove(guildData, guild));
+            return;
+          }
+        }
+      }
+      case "levels": {
+        switch (action) {
+          case "add": {
+            interaction.update(menus.settings.levels.add(guild));
+            return;
+          }
+          case "remove": {
+            interaction.update(menus.settings.levels.remove(guildData, guild));
+            return;
+          }
+          case "multiplier": {
+            interaction.update(menus.settings.levels.multiplier(guildData, guild));
             return;
           }
         }

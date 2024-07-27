@@ -37,6 +37,7 @@ new Command({
           level: 0,
           exp: 0,
           requireExp: 100,
+          warns: 0,
         });
 
         console.log(`Registro criado para o membro ${member.user.tag} na guilda ${member.guild.name}`);

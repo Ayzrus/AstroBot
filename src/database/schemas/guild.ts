@@ -10,6 +10,15 @@ export const guildSchema = new Schema(
             transcripts: t.channelInfo,
             level: t.channelInfo
         },
+        antiflood: t.boolean,
+        levelsystem: {
+            roles: [
+                {
+                    id: t.string,
+                    multiplier: t.number,
+                }
+            ],
+        },
         parents: {
             tickets: t.parentInfo
         },

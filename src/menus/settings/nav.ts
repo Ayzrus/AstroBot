@@ -5,7 +5,7 @@ export const settingsNav = {
   main: new ButtonBuilder({
     customId: "settings/main",
     label: "Menu Principal",
-    style: ButtonStyle.Danger,
+    style: ButtonStyle.Primary,
     emoji: icon("home")
   }),
   back: (menu: string) => new ButtonBuilder({

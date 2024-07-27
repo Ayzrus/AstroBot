@@ -1,7 +1,7 @@
 import { Event } from "#base";
 import { db } from "#database";
 import { brBuilder, createEmbed, findChannel } from "@magicyan/discord";
-import { AttachmentBuilder, Message } from "discord.js";
+import { Message } from "discord.js";
 
 new Event({
   name: "Event Exp",
@@ -28,6 +28,7 @@ new Event({
           level: 0,
           exp: 0,
           requireExp: 100,
+          warns: 0,
         });
 
         console.log(`Registro criado para o membro ${member.user.tag} na guilda ${member.guild.name}`);
@@ -37,7 +38,20 @@ new Event({
       }
     }
 
-    const expGained = Math.floor(Math.random() * 10) + 1;
+    const roleMultipliers = guildData.levelsystem?.roles || [];
+    const memberRoles = member.roles.cache.map(role => role.id);
+
+    let expMultiplier = 1;
+    roleMultipliers.forEach(roleData => {
+      if (memberRoles.includes(roleData.id)) {
+        expMultiplier = Math.max(expMultiplier, roleData.multiplier);
+      }
+    });
+
+    const baseExpGained = Math.floor(Math.random() * 10) + 1;
+
+    const expGained = Math.floor(baseExpGained * expMultiplier);
+
     const newExp = userData.exp + expGained;
 
     let levelUp = false;
@@ -84,15 +98,14 @@ new Event({
         description: brBuilder(
           `||<@${member.id}>||`,
           `Parabéns você subiu para o nível ${newLevel}!`,
-          `Exp necessario para proximo nível: ${newRequireExp}`,
-          `Você ta no rank: ${allMembers.findIndex(m => m.id === member.id) + 1}`
+          `Exp necessário para o próximo nível: ${newRequireExp}`,
+          `Você está no rank: ${allMembers.findIndex(m => m.id === member.id) + 1}`
         ),
         footer: { iconURL: message.guild.iconURL(), text: message.guild.name },
         timestamp: Date.now()
       });
 
       levelChannel.send({ embeds: [embed] });
-
     }
   },
 });

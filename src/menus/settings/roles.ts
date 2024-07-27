@@ -44,7 +44,7 @@ export function settingsRolesAddMenu(guild: Guild) {
 
   const navRow = createRow(
     settingsNav.back("roles"),
-    settingsNav.back("main")
+    settingsNav.main
   );
 
   return { embeds: [embed], components: [row, navRow] };
@@ -76,7 +76,7 @@ export function settingsRolesRemoveMenu(guilData: GuildSchema, guild: Guild) {
 
   const navRow = createRow(
     settingsNav.back("roles"),
-    settingsNav.back("main")
+    settingsNav.main
   );
 
   return { embeds: [embed], components: [row, navRow] };
