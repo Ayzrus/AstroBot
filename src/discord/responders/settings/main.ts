@@ -20,6 +20,10 @@ new Responder({
         interaction.update(menus.settings.roles.main(guildData, guild));
         return;
       }
+      case "verify": {
+        interaction.update(menus.settings.verify.main(guildData, guild));
+        return;
+      }
       case "levels": {
         interaction.update(menus.settings.levels.main(guildData, guild));
         return;

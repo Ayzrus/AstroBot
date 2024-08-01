@@ -1,6 +1,5 @@
 import { Responder, ResponderType } from "#base";
 import { db } from "#database";
-import { icon, res } from "#functions";
 import { menus } from "#menus";
 import { findChannel } from "@magicyan/discord";
 import { ActionRowBuilder, ChannelType, ModalBuilder, TextInputBuilder, TextInputStyle } from "discord.js";
@@ -55,6 +54,26 @@ new Responder({
           }
         }
         interaction.update(menus.settings.roles.main(guildData, guild));
+        guildData.save();
+        return;
+      }
+      case "verify": {
+        const current = guildData.verify?.role ?? [];
+        switch (arg) {
+          case "add": {
+            current.push(...interaction.values);
+            const updated = Array.from(new Set(current));
+            guildData.$set("verify.roles", updated);
+            break;
+          }
+          case "remove": {
+            const values = interaction.values;
+            const filtered = current.filter(id => !values.includes(id));
+            guildData.$set("verify.roles", filtered);
+            break;
+          }
+        }
+        interaction.update(menus.settings.verify.main(guildData, guild));
         guildData.save();
         return;
       }

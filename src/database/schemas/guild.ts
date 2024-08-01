@@ -8,7 +8,7 @@ export const guildSchema = new Schema(
             logs: t.channelInfo,
             logscommands: t.channelInfo,
             transcripts: t.channelInfo,
-            level: t.channelInfo
+            level: t.channelInfo,
         },
         antiflood: t.boolean,
         levelsystem: {
@@ -25,6 +25,9 @@ export const guildSchema = new Schema(
         tickets: {
             roles: [String],
             closed: [String, Boolean]
+        },
+        verify: {
+            role: [String]
         }
     },
     {

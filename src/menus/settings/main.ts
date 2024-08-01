@@ -20,39 +20,48 @@ export function settingsMainMenu(antiflood: boolean) {
   const createAntiFloodRow = (isAntiFlood: boolean) => {
     return createRow(
       new ButtonBuilder({
-        customId: "settings/channels",
-        label: "Canais",
-        emoji: "📖",
-        style: ButtonStyle.Secondary
-      }),
-      new ButtonBuilder({
-        customId: "settings/parents",
-        label: "Categorias",
-        emoji: "📑",
-        style: ButtonStyle.Secondary
-      }),
-      new ButtonBuilder({
-        customId: "settings/roles",
-        label: "Cargos dos Tickets",
-        emoji: "📗",
-        style: ButtonStyle.Secondary
-      }),
-      new ButtonBuilder({
-        customId: "settings/levels",
-        label: "Cargos do Sistema de Level",
-        emoji: "🆙",
-        style: ButtonStyle.Secondary
-      }),
-      new ButtonBuilder({
         customId: "settings/anti",
         label: "Sistema anti-flood",
         emoji: isAntiFlood ? "✅" : "🚫",
         style: isAntiFlood ? ButtonStyle.Success : ButtonStyle.Danger
-      })
+      }),
+      new ButtonBuilder({
+        customId: "settings/verify",
+        label: "Cargo do Verificar",
+        emoji: "📗",
+        style: ButtonStyle.Secondary
+      }),
     );
   };
 
-  const row = createAntiFloodRow(antiflood);
+  const mainRow = createRow(
+    new ButtonBuilder({
+      customId: "settings/channels",
+      label: "Canais",
+      emoji: "📖",
+      style: ButtonStyle.Secondary
+    }),
+    new ButtonBuilder({
+      customId: "settings/parents",
+      label: "Categorias",
+      emoji: "📑",
+      style: ButtonStyle.Secondary
+    }),
+    new ButtonBuilder({
+      customId: "settings/roles",
+      label: "Cargos dos Tickets",
+      emoji: "📗",
+      style: ButtonStyle.Secondary
+    }),
+    new ButtonBuilder({
+      customId: "settings/levels",
+      label: "Cargos do Sistema de Level",
+      emoji: "🆙",
+      style: ButtonStyle.Secondary
+    }),
+  );
 
-  return { ephemeral, embeds: [embed], components: [row] };
+  const secRow = createAntiFloodRow(antiflood);
+
+  return { ephemeral, embeds: [embed], components: [mainRow, secRow] };
 }

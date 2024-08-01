@@ -22,6 +22,18 @@ new Responder({
           }
         }
       }
+      case "verify": {
+        switch (action) {
+          case "add": {
+            interaction.update(menus.settings.verify.add());
+            return;
+          }
+          case "remove": {
+            interaction.update(menus.settings.verify.remove(guildData, guild));
+            return;
+          }
+        }
+      }
       case "levels": {
         switch (action) {
           case "add": {
