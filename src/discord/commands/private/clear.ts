@@ -15,6 +15,7 @@ new Command({
       required: true,
     },
   ],
+  defaultMemberPermissions: "ManageChannels",
   async run(interaction) {
 
     if (!interaction.channel) return;

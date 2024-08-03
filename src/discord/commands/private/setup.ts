@@ -7,6 +7,7 @@ new Command({
   name: "setup",
   description: "[🔒] Comando de setup do painel de Ticket.",
   type: ApplicationCommandType.ChatInput,
+  defaultMemberPermissions: "Administrator",
   options: [
     {
       name: "tickets",

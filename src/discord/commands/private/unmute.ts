@@ -6,6 +6,7 @@ new Command({
   name: "unmute",
   description: "[🔒] Usado para desmutar um utilizador.",
   type: ApplicationCommandType.ChatInput,
+  defaultMemberPermissions: "MuteMembers",
   async run(interaction) {
     const { guild } = interaction;
 

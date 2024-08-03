@@ -7,6 +7,7 @@ new Command({
   name: "configurações",
   description: "[🔒] Comando de configurações do Bot.",
   type: ApplicationCommandType.ChatInput,
+  defaultMemberPermissions: "Administrator",
   async run(interaction) {
     const { guild } = interaction;
     const guildData = await db.guilds.get(guild.id);

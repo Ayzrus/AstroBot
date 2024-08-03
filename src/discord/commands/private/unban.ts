@@ -6,6 +6,7 @@ new Command({
   name: "desbanir",
   description: "[🔒] Comando para desbanir um utilizador.",
   type: ApplicationCommandType.ChatInput,
+  defaultMemberPermissions: "BanMembers",
   async run(interaction) {
 
     const { guild } = interaction;

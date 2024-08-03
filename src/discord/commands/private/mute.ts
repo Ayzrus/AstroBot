@@ -27,6 +27,7 @@ new Command({
       type: ApplicationCommandOptionType.String
     },
   ],
+  defaultMemberPermissions: "MuteMembers",
   async run(interaction) {
     const { member, guild, options } = interaction;
 

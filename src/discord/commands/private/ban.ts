@@ -22,6 +22,7 @@ new Command({
       required: false,
     }
   ],
+  defaultMemberPermissions: "BanMembers",
   async run(interaction) {
 
     const userOpt = interaction.options.getUser("user");

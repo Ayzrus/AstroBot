@@ -7,6 +7,7 @@ new Command({
   name: "verificacao",
   description: "[🔒] Usado para mandar o paneil de verificação.",
   type: ApplicationCommandType.ChatInput,
+  defaultMemberPermissions: "Administrator",
   options: [
     {
       name: "channel",

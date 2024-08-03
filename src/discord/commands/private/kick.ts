@@ -22,6 +22,7 @@ new Command({
       required: false,
     }
   ],
+  defaultMemberPermissions: "KickMembers",
   async run(interaction) {
 
     const userOpt = interaction.options.getUser("user");
